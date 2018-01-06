@@ -209,6 +209,10 @@ export default class Carousel extends Component {
     if (this.scrollView) {
       this.scrollView.scrollTo({ y: 0, x: offset, animated });
 
+      if ( Platform.OS === 'windows' ) {
+        setTimeout(() => this.scrollView.scrollTo({y: 0, x: offset, animated: true}), 15);
+      }
+
       // Fix bug #50
       if (!nofix && Platform.OS === 'android' && !animated) {
         this.scrollView.scrollTo({ y: 0, x: offset, animated: true });
